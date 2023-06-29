@@ -14,22 +14,24 @@ namespace DemoOpentelemetry.API.Controllers
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
         private readonly IFeatureFlag featureFlag;
+        private readonly IConfiguration configuration;
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(IFeatureFlag featureFlag, ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(IFeatureFlag featureFlag, IConfiguration configuration, ILogger<WeatherForecastController> logger)
         {
             this.featureFlag = featureFlag;
+            this.configuration = configuration;
             _logger = logger;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            var featureFlagName = "platform-enable-datachange-stream-notifications";
+            var featureFlagName = configuration.GetSection("FeatureFlagName").Value;
             var defaultValue = false;
-            var organizationFriendlyId = $"test-tenant-1";
+            var tenantId = $"test-tenant-1";
 
-            var userObject = new FeatureFlagUser() { TenantId = organizationFriendlyId };
+            var userObject = new FeatureFlagUser() { TenantId = tenantId };
             var ffValue = featureFlag.IsEnabled(featureFlagName, userObject, defaultValue);
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

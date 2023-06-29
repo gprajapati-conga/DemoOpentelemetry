@@ -22,7 +22,7 @@ builder.Services.AddOpenTelemetryTracing(b =>
 });
 builder.Services.AddSingleton<IFeatureFlag>(x =>
 {
-    string featureFlagSdkKey = "xxxxxxx";
+    string featureFlagSdkKey = builder.Configuration.GetSection("FeatureFlagSdkKey").Value;
     var featureFlag = new LaunchDarklyFeatureFlag(featureFlagSdkKey);
     return featureFlag;
 });
