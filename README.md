@@ -39,6 +39,10 @@ By looking at trace for first http request, its looks like never ending trace.
 
 -----------------------------------------------------------------------------------------------------------------
 
+Issue:
+Looks like Singleton FeatureFlag service is not playing well with OpenTelemetry.
+
 Questions:
 1. What are the ways to stop polluting first API request trace?
-2. What is frequency of stream.launchdarkly.com GET call? Once per lifetime of process?
+2. Launchdarkly span is adding any additional latency in API time or not?
+3. What is frequency of stream.launchdarkly.com GET call? Once per lifetime of process?
