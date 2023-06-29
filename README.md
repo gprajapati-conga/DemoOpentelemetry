@@ -29,13 +29,15 @@ As part of first request trace, now, we are seeing +1 traces from launch darkly.
  - POST https://events.launchdarkly.com/bulk (newly added span in first request)
 ------------------------------------------------------------------------------------------
 
-9. Again goto API Swagger UI page and send few GET request at /WeatherForecast endpoint at few intervals
+9. Again goto API Swagger UI page and send few GET request at /WeatherForecast endpoint at few seconds intervals
 
-Observation:
------------------------------------------------------------------------------------------------
+Observation
+----------------------------------------------------------------------------------------------------------------
 With Subsequent requests, first http request trace adding more HTTP POST calls for "events.launchdarkly.com" host. 
+
 By looking at trace for first http request, its looks like never ending trace.
------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------
 
 Questions:
 1. What are the ways to stop polluting first API request trace?
