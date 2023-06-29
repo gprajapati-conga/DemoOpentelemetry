@@ -13,5 +13,5 @@ Issue:
 2. With Subsequent requests, first http request trace adding HTTP POST calls for "events.launchdarkly.com" host. By looking at trace for first http request, its looks like never ending trace.
 
 Questions:
-1.
-2.
+1. What are the ways to stop polluting first API request trace?
+2. What is frequency of stream.launchdarkly.com GET call? Once per lifetime of process?
