@@ -8,9 +8,9 @@ Steps to run application and reproduce issue
 6. Open Swagger UI for above API at https://localhost:7038/swagger/index.html and send multiple GET request(s) at /WeatherForecast endpoint.
 7. Goto http://localhost:16686/search and select "DemoOpentelemetry.API" service and search for Traces.
 
-Unexpected Behaviour:
-1. 
-2.
+Issue:
+1. First http request trace getting couple of HTTP POST for "events.launchdarkly.com" host on /bulk and /diagnostic endpoints
+2. With Subsequent requests, first http request trace adding HTTP POST calls for "events.launchdarkly.com" host. By looking at trace for first http request, its looks like never ending trace.
 
 Questions:
 1.
